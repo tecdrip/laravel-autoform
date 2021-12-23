@@ -1,10 +1,10 @@
 <?php
 
-namespace Tecdrip\Maverick;
+namespace Tecdrip\LaravelAutoForm;
 
 use Illuminate\Support\ServiceProvider;
 
-class MaverickServiceProvider extends ServiceProvider
+class AutoFormServiceProvider extends ServiceProvider
 {
     /**
      * Register services.

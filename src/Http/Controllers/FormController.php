@@ -1,28 +1,15 @@
 <?php
 
-namespace Tecdrip\Maverick\Http\Controllers;
+namespace Tecdrip\LaravelAutoForm\Http\Controllers;
 
-use DB;
 use Hash;
-use Schema;
 use Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Tecdrip\Maverick\Services\TableDescriber;
+use Tecdrip\LaravelAutoForm\Services\TableDescriber;
 
 class FormController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Create Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
     /**
      * Create a new controller instance.
      *
@@ -35,7 +22,7 @@ class FormController extends Controller
             return;
         }
         $this->modelName = explode("/", $route)[0];
-        $this->model = resolve('App\\' . ucfirst($this->modelName));
+        $this->model = resolve('App\\' . ucwords($this->modelName));
         $this->describer = new TableDescriber($this->model->getTable());
     }
 
@@ -66,8 +53,6 @@ class FormController extends Controller
 
     public function create()
     {
-        $columns = $this->describer->columns;    
-
         return view('maverick::create', [
             'action' => 'create',
             'modelName' => $this->modelName,
