@@ -12,16 +12,9 @@
                         Create
                     @endif
                      {{ ucfirst($modelName) }}</div>
-                
-                    @if(@$action == "update")
-                         {{ Breadcrumbs::render("$modelName/update", $id) }}
-                    @else
-                         {{ Breadcrumbs::render("$modelName/create") }}
-                    @endif
-               
-                
+
                 <div class="card-body">
-                    
+
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
                             {{ session('success') }}
@@ -39,10 +32,10 @@
                     @endif
 
                     <form method="POST">
-                        @csrf 
-                        
+                        @csrf
+
                         <div class="container">
-                            
+
                             @foreach($columns as $index)
                                 @if(is_array($index))
                                     <div class="row">
@@ -59,7 +52,7 @@
                                     </div>
                                 </div>
                                 @endif
-                                
+
                             @endforeach
                         </div>
 

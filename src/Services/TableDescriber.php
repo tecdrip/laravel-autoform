@@ -9,8 +9,8 @@ class TableDescriber {
 
     function __construct($tableName)
     {
-        $columnRelationships = config('autoform.column_relationships');
         $columOverrides = config('autoform.column_override');
+        $columnRelationships = config('autoform.column_relationships');
 
         $this->columns = DB::select("describe $tableName");
 
@@ -58,10 +58,9 @@ class TableDescriber {
     }
 
     private function createIndex($schema = [])
-    {   
+    {
         $index = [];
         $indexedColumnNames = [];
-        $columns = $this->columns;
 
         if(!$schema) {
             $schema = [];
@@ -93,7 +92,7 @@ class TableDescriber {
         $chunk = [];
         //add non ordered columns
         foreach($this->columns as $column) {
-            
+
             if(!in_array($column->Field, $indexedColumnNames)) {
                 //column has not been added to the ind
                 $chunk[] = $column;

@@ -10,8 +10,7 @@
     }
   ],
   "require": {
-    "doctrine/dbal": "^3.2",
-    "diglactic/laravel-breadcrumbs": "^7.0"
+    "doctrine/dbal": "^3.2"
   },
   "autoload": {
     "psr-4": {

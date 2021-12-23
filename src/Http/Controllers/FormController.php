@@ -6,6 +6,7 @@ use Hash;
 use Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Exception;
 use Tecdrip\LaravelAutoForm\Services\TableDescriber;
 
 class FormController extends Controller
@@ -17,37 +18,36 @@ class FormController extends Controller
      */
     public function __construct()
     {
-        $route = @Route::current()->uri;
+        $route = Route::current()->uri;
         if(@!$route) {
             return;
         }
         $this->modelName = explode("/", $route)[0];
-        $this->model = resolve('App\\' . ucwords($this->modelName));
+        $this->model = resolve('App\\Models\\' . ucwords($this->modelName));
+
+        if(!$this->model) {
+            abort(404, "Could not resolve model");
+        }
+
         $this->describer = new TableDescriber($this->model->getTable());
     }
 
-    public function list() 
+    public function list()
     {
+        $hiddenColumns = config('autoform.hidden_columns');
+
         $this->modelAll = $this->model::all();
 
         $headers = [];
+
         if(count($this->modelAll) >= 1) {
             $headers = $this->modelAll[0]->getFillable();
-
-            $headers = array_map(function($header) {
-                if($header == "id") {
-                    $header = "ID";
-                }else{
-                    $header = ucwords($header);
-                }
-
-                return $header;
-            }, $headers);
+            $headers = array_diff($headers, $hiddenColumns);
         }
 
         $modelName = $this->modelName;
         $modelAll = $this->modelAll;
-        
+
         return view('autoform::list', compact('modelName', 'modelAll', 'headers'));
     }
 
@@ -62,7 +62,7 @@ class FormController extends Controller
 
     public function postCreate(Request $request)
     {
-        $inputValues = $request->except(['_token']);   
+        $inputValues = $request->except(['_token']);
 
         $columns = $this->describer->columns;
 
@@ -93,7 +93,7 @@ class FormController extends Controller
 
     public function update(Request $request, $id)
     {
-        $columns = $this->describer->columns; 
+        $columns = $this->describer->columns;
 
         $instance = $this->model->find($id);
 
@@ -161,11 +161,11 @@ class FormController extends Controller
         return redirect($this->modelName . "/list");
     }
 
-    private function formatHeaderArray($headers) 
+    private function formatHeaderArray($headers)
     {
         foreach($headers as &$header) {
             $header = str_replace("_", " ", $header);
-            
+
             if($header == "id") {
                 $header = "ID";
             }else{

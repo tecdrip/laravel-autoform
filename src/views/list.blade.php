@@ -7,8 +7,6 @@
             <div class="card">
                 <div class="card-header">{{ ucfirst($modelName) }}</div>
 
-                 {{ Breadcrumbs::render("$modelName/list") }}
-
                 <div class="card-body">
                     @if (session('success'))
                         <div class="alert alert-success" role="alert">
@@ -21,13 +19,13 @@
                             {{ session('error') }}
                         </div>
                     @endif
-    
+
                     @if(count($modelAll) >= 1)
-                    <a href="/{{ $modelName }}/create" class="btn btn-success mb-4 float-right">Create {{ $modelName }}</a>
+                    <a href="/{{ $modelName }}/create" class="btn btn-success mb-4 float-right">Create new {{ ucwords($modelName) }}</a>
                     <table class="table table-bordered table-responsive-xs table-responsive-sm">
                         <tr>
                            @foreach($headers as $header)
-                            <th>{{ $header }}</th>
+                            <th>{{ ucwords($header) }}</th>
                            @endforeach
                            <th>Update</th>
                            <th>Delete</th>
@@ -35,10 +33,10 @@
 
                         @foreach($modelAll as $model)
                         <tr>
-                            @foreach($model->getFillable() as $header)
+                            @foreach($headers as $header)
                             <td>{{ $model->{$header} }}</td>
                             @endforeach
-                            <td><a class="btn btn-primary" href="/{{ $modelName }}/update/{{ $model->id }}">Update</a></td>
+                            <td><a class="btn btn-success" href="/{{ $modelName }}/update/{{ $model->id }}">Update</a></td>
                             <td><a onclick="return confirm('Are you sure?')" class="btn btn-danger" href="/{{ $modelName }}/delete/{{ $model->id }}">Delete</a></td>
                         </tr>
                         @endforeach

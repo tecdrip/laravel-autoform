@@ -1,0 +1,4 @@
+
+Misc:
+    ☐ Add caching to TableDescriber
+    ☐ Model resolver should let user decide path when needed
