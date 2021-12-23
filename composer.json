@@ -15,7 +15,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Travierm\\LaravelAutoForm\\": "src/"
+      "Tecdrip\\LaravelAutoForm\\": "src/"
     }
   },
   "extra": {
