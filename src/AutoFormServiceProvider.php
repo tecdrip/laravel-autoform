@@ -2,6 +2,7 @@
 
 namespace Tecdrip\LaravelAutoForm;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 
 class AutoFormServiceProvider extends ServiceProvider
@@ -23,6 +24,8 @@ class AutoFormServiceProvider extends ServiceProvider
      */
     public function boot(\Illuminate\Routing\Router $router)
     {
+        Config::set('breadcrumbs.view', 'breadcrumbs::bootstrap5');
+
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
         $this->loadViewsFrom(__DIR__.'/views', 'autoform');
         $this->publishes([

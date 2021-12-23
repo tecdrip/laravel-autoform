@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Diglactic\Breadcrumbs\Breadcrumbs;
+
 Route::get('autoform', function(){
     return 'AutoForm 0.0.1 is installed successfully!';
 });

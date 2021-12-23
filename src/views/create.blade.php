@@ -11,7 +11,18 @@
                     @else
                         Create
                     @endif
-                     {{ ucfirst($modelName) }}</div>
+
+                    {{ ucfirst($modelName) }}
+                </div>
+
+                <div class="mx-3">
+                @if(@$action == "update")
+                    {{ Breadcrumbs::render("$modelName/update", $id) }}
+                @else
+                    {{ Breadcrumbs::render("$modelName/create") }}
+                @endif
+                </div>
+
 
                 <div class="card-body">
 
