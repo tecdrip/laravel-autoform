@@ -1,4 +1,13 @@
+Todo:
+    ☐ Create a dashboard view that can be enabled
+        ☐ Show all models that have routes
+
+Research:
+    ☐ See if the package can determine if a column is required or not
+        ☐ Add things like max length checking
 
 Misc:
     ☐ Add caching to TableDescriber
     ☐ Model resolver should let user decide path when needed
+    ☐ Work on grid layout system
+    ☐ Work on mobile friendly-ness
