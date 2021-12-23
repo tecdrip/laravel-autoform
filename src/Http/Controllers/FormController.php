@@ -48,12 +48,12 @@ class FormController extends Controller
         $modelName = $this->modelName;
         $modelAll = $this->modelAll;
         
-        return view('maverick::list', compact('modelName', 'modelAll', 'headers'));
+        return view('autoform::list', compact('modelName', 'modelAll', 'headers'));
     }
 
     public function create()
     {
-        return view('maverick::create', [
+        return view('autoform::create', [
             'action' => 'create',
             'modelName' => $this->modelName,
             'columns' => $this->describer->index
@@ -106,7 +106,7 @@ class FormController extends Controller
             $column->Value = $instance[$column->Field];
         }
 
-        return view('maverick::create', [
+        return view('autoform::create', [
             'id' => $id,
             'action' => 'update',
             'modelName' => $this->modelName,

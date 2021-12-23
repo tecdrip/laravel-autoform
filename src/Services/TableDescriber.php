@@ -1,5 +1,5 @@
 <?php
-namespace Tecdrip\Maverick\Services;
+namespace Tecdrip\LaravelAutoForm\Services;
 
 use DB;
 
@@ -9,8 +9,8 @@ class TableDescriber {
 
     function __construct($tableName)
     {
-        $columnRelationships = config('maverick.column_relationships');
-        $columOverrides = config('maverick.column_override');
+        $columnRelationships = config('autoform.column_relationships');
+        $columOverrides = config('autoform.column_override');
 
         $this->columns = DB::select("describe $tableName");
 
@@ -39,7 +39,7 @@ class TableDescriber {
             }
         }
 
-        $orderSchemas = config('maverick.column_ordering');
+        $orderSchemas = config('autoform.column_ordering');
         $schema = @$orderSchemas[$tableName];
 
         $this->removeBadColumns();

@@ -1,31 +1,31 @@
 <?php
 
-Route::get('maverick', function(){
-    return 'Maverick 1.0.16 is installed successfully!';
+Route::get('autoform', function(){
+    return 'AutoForm 0.0.1 is installed successfully!';
 });
 
 $middleware = ['web'];
-if(is_array(@config('maverick.middleware'))) {
-    $middleware = array_merge($middleware, config('maverick.middleware'));
+if(is_array(@config('autoform.middleware'))) {
+    $middleware = array_merge($middleware, config('autoform.middleware'));
 }
 
 Route::middleware($middleware)->group(function() {
 
-    if(!config('maverick.models')) {
+    if(!config('autoform.models')) {
         return;
     }
 
-    foreach(config('maverick.models') as $modelName)
+    foreach(config('autoform.models') as $modelName)
     {
         $modelName = strtolower($modelName);
 
-        Route::get("$modelName/list", 'Tecdrip\Maverick\Http\Controllers\FormController@list')->name($modelName . '/list');
-        Route::get("$modelName/create", 'Tecdrip\Maverick\Http\Controllers\FormController@create')->name($modelName . '/create');
-        Route::get("$modelName/update/{id}", 'Tecdrip\Maverick\Http\Controllers\FormController@update')->name($modelName . '/update');
-        Route::get("$modelName/delete/{id}", 'Tecdrip\Maverick\Http\Controllers\FormController@delete')->name($modelName . '/delete');
+        Route::get("$modelName/list", 'Tecdrip\LaravelAutoForm\Http\Controllers\FormController@list')->name($modelName . '/list');
+        Route::get("$modelName/create", 'Tecdrip\LaravelAutoForm\Http\Controllers\FormController@create')->name($modelName . '/create');
+        Route::get("$modelName/update/{id}", 'Tecdrip\LaravelAutoForm\Http\Controllers\FormController@update')->name($modelName . '/update');
+        Route::get("$modelName/delete/{id}", 'Tecdrip\LaravelAutoForm\Http\Controllers\FormController@delete')->name($modelName . '/delete');
 
-        Route::post("$modelName/create", 'Tecdrip\Maverick\Http\Controllers\FormController@postCreate');
-        Route::post("$modelName/update/{id}", 'Tecdrip\Maverick\Http\Controllers\FormController@postUpdate');
+        Route::post("$modelName/create", 'Tecdrip\LaravelAutoForm\Http\Controllers\FormController@postCreate');
+        Route::post("$modelName/update/{id}", 'Tecdrip\LaravelAutoForm\Http\Controllers\FormController@postUpdate');
 
         if($modelName ) {
             //Register Breadcrumbs

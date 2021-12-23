@@ -1,4 +1,4 @@
-@extends(config('maverick.master_view'))
+@extends(config('autoform.master_view'))
 
 @section('content')
 <div class="container-fluid">

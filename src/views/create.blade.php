@@ -1,4 +1,4 @@
-@extends(config('maverick.master_view'))
+@extends(config('autoform.master_view'))
 
 @section('content')
 <div class="container-fluid">
@@ -48,14 +48,14 @@
                                     <div class="row">
                                         @foreach($index as $column)
                                         <div class="col-lg-6">
-                                            @includeIf('maverick::inputs.' . $column->Type['name'], [$column])
+                                            @includeIf('autoform::inputs.' . $column->Type['name'], [$column])
                                         </div>
                                         @endforeach
                                     </div>
                                 @else
                                 <div class="row">
                                     <div class="col-lg-6">
-                                        @includeIf('maverick::inputs.' . $index->Type['name'], ['column' => $index])
+                                        @includeIf('autoform::inputs.' . $index->Type['name'], ['column' => $index])
                                     </div>
                                 </div>
                                 @endif

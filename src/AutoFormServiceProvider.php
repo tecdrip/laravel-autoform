@@ -24,9 +24,9 @@ class AutoFormServiceProvider extends ServiceProvider
     public function boot(\Illuminate\Routing\Router $router)
     {
         $this->loadRoutesFrom(__DIR__.'/routes/web.php');
-        $this->loadViewsFrom(__DIR__.'/views', 'maverick');
+        $this->loadViewsFrom(__DIR__.'/views', 'autoform');
         $this->publishes([
-            __DIR__.'/config/maverick.php' => config_path('maverick.php'),
+            __DIR__.'/config/autoform.php' => config_path('autoform.php'),
         ]);
     }
 }

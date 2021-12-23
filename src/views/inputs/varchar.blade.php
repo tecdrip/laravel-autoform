@@ -3,7 +3,7 @@
 
     @if($column->Field == "state")
         <select class="form-control" name="{{ $column->Field }}">
-            @include('maverick::inputs.common.states')
+            @include('autoform::inputs.common.states')
         </select>
     @elseif($column->Field == "password")
         <input autocomplete="off" class="form-control @error($column->Field) is-invalid @enderror" type="password" name="password" @if(@$column->Type['length']) maxlength='{{ $column->Type['length'] }}' @endif />
