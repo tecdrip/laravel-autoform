@@ -1,7 +1,8 @@
 Todo:
     ☐ Create a dashboard view that can be enabled
         ☐ Show all models that have routes
-
+    ☐ Create a model editor that can create / update any type of model structure
+    
 Research:
     ☐ See if the package can determine if a column is required or not
         ☐ Add things like max length checking
